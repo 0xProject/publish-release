@@ -175,12 +175,10 @@ PublishRelease.prototype.publish = function publish () {
       err.message = err.message.replace(new RegExp(opts.token, 'g'), '****')
       // we are an EventEmitter so emit the 'error' event so the caller knows we failed.
       // self.emit('error', err)
-      console.log('Encountered err: ', err);
-      console.log('Deciding to continue execution.');
       // just run the callback with no info. dont run cb(err) beacuse as an EventEmitter this creates a
       // throw Error('Uncaught, unspecified "error" event.')
       // and that error message isn't helpful to anyone
-      return cb()
+      return cb(null)
     }
     // otherwise
     cb(null, obj.createRelease)
